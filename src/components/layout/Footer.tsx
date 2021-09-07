@@ -25,7 +25,7 @@ export default function Footer() {
     },
   ];
   const socialMedia = [
-    { name: "Twitter", icon: <FaIcons.FaTwitter />, link: "#" },
+    { name: "Twitter", icon: <FaIcons.FaTwitter />, link: "https://www.twitter.com/rastafinance" },
     { name: "Tik Tok", icon: <Io5Icons.IoLogoTiktok />, link: "#" },
     { name: "Instagram", icon: <FaIcons.FaInstagram />, link: "#" },
     { name: "Telegram", icon: <FaIcons.FaTelegramPlane />, link: "#" },
@@ -87,13 +87,15 @@ export default function Footer() {
             <div className="md:flex md:flex-row md:space-x-4 gap-4 md:gap-0 mt-4">
                 {socialMedia.map((item, index) => {
                   return (
-                    <Link
+                    <a
                       className=" inline-block md:block mr-5 last:mr-0 md:mr-0 text-md w-50 h-50 border-1 border-white rounded-full p-2 hover:bg-yellow-rasta hover:text-green-rasta"
                       key={index}
-                      to={item.link}
+                      href={item.link}
+                      target="_blank"
+                      rel="noreferrer"
                     >
                       {item.icon}
-                    </Link>
+                    </a>
                   );
                 })}
             </div>

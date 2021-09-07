@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, forwardRef, useImperativeHandle, Ref } from "react";
 
-import { Link } from "react-router-dom";
+
 import * as FaIcons from "react-icons/fa";
 import * as RiIcons from "react-icons/ri";
 import * as IoIcons from "react-icons/io";
 import * as Io5Icons from "react-icons/io5";
 import * as AiIcons from "react-icons/ai";
 import * as GiIcons from "react-icons/gi";
+import MenuItem from "./MenuItem";
 
 export default function Sidebar() {
   const [sidebar, setSidebar] = useState(false);
@@ -29,17 +30,19 @@ export default function Sidebar() {
         },
         {
             label: "Trade",
-            path: "/trade",
+            path: "#",
             icon: <IoIcons.IoIosSwap className="inline-block" />,
-            parent: false,
-            child: [],
+            parent: true,
+            child: [
+              {
+                path: "https://exchange.rasta.finance",
+                label: "Exhchange",
         },
         {
-            label: "Rasino",
-            path: "#",
-            icon: <AiIcons.AiFillDollarCircle className="inline-block" />,
-            parent: true,
-            child: [],
+                path: "https://exchange.rasta.finance/#/pool",
+                label: "Liquidity",
+              },
+            ],
         },
         {
             label: "Farms",
@@ -48,11 +51,11 @@ export default function Sidebar() {
             parent: true,
             child: [
                 {
-                path: "/farming/mr-rasta",
+                path: "/farms",
                 label: "Mr. Rasta",
                 },
                 {
-                path: "/farming/mrs-rasta",
+                path: "https://m.rasta.finance/farms",
                 label: "Mrs. Rasta",
                 },
             ],
@@ -64,11 +67,11 @@ export default function Sidebar() {
         parent: true,
         child: [
             {
-            path: "#",
+            path: "/pools",
             label: "Mr. Rasta",
             },
             {
-            path: "#",
+            path: "https://m.rasta.finance/pools",
             label: "Mrs. Rasta",
             },
         ],
@@ -91,23 +94,23 @@ export default function Sidebar() {
                 label: "Telegram",
                 },
                 {
-                path: "#",
+                  path: "https://coinmarketcap.com/currencies/rasta-finance/",
                 label: "Coin Market Cap",
                 },
                 {
-                path: "#",
+                path: "https://docs.rasta.finance",
                 label: "Whitepaper",
                 },
                 {
-                path: "#",
+                path: "https://rastafinance.medium.com",
                 label: "Medium",
                 },
                 {
-                path: "#",
+                path: "https://dappradar.com/binance-smart-chain/defi/rasta-finance",
                 label: "Dapp Radar",
                 },
                 {
-                path: "#",
+                path: "https://dex.guru/token/0xe3e8cc42da487d1116d26687856e9fb684817c52-bsc",
                 label: "Chart",
                 },
             ],
@@ -122,46 +125,21 @@ export default function Sidebar() {
     ];
 
   return (
-    <div className="text-white">
       <div className="navbar text-white">
-        <Link to="/" className="menu-bars text-2xl">
+      <span className="menu-bars text-2xl cursor-pointer">
           <FaIcons.FaBars onClick={showSidebar} />
-        </Link>
-      </div>
+      </span>
       <nav
-        className={`h-screen w-auto top-0 py-6 px-8 bg-gray-rasta z-50 absolute transition duration-1000 ${sidebar ? "left-0" : "-left-full"}`}
+        className={`h-full w-auto top-0 py-6 px-8 bg-gray-rasta z-50 fixed transition duration-1000 ${sidebar ? "left-0" : "-left-full"}`}
       >
-        <Link to="/" className="menu-bars absolute right-4 text-3xl text-white">
+        <span className="menu-bars absolute right-4 text-3xl text-white cursor-pointer">
           <FaIcons.FaRegWindowClose onClick={showSidebar} />
-        </Link>
+        </span>
         <ul className="menu-items text-white mt-12 text-2xl space-y-4">
           {menu.map((item, index) => {
-            return (
-              <li key={item.label}>
-                <Link
-                  to={item.path}
-                  className="flex flex-row space-x-4 items-center" onClick={showSidebar}
-                >
-                  {item.icon}
-                  <span className="flex-grow-1 pr-8">{item.label}</span>
-                  {item.parent && <IoIcons.IoIosArrowDropright/>}
-                </Link>
-                {item.child.length > 0 && (
-                    <ul className="flex flex-col items-start text-sm">
-                    {item.child.map((i,id) => {
-                       return <li key={i.label}>
-                            <Link to={i.path} onClick={showSidebar} >
-                              <span className="ml-10">{i.label}</span>
-                            </Link>
-                        </li>
-                    })}
-                    </ul>
-                )}
-              </li>
-            );
+            return (<MenuItem key={index} menu={item} showSidebar={showSidebar}/>)
           })}
         </ul>
       </nav>
     </div>
-  );
-}
+)}

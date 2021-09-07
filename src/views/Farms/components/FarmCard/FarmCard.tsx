@@ -7,6 +7,8 @@ import { Farm } from 'state/types'
 import { provider } from 'web3-core'
 import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
+import { useFarmFromSymbol, useFarmUser } from 'state/hooks'
+import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
@@ -14,6 +16,8 @@ import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
 import ApyButton from './ApyButton'
+import FarmHarvest from '../CardElements/FarmHarvest'
+import FooterCardFarms from '../CardElements/FooterCardFarms'
 
 export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber
@@ -131,8 +135,14 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
+  const { pid } = useFarmFromSymbol(farm.lpSymbol)
+  const { earnings } = useFarmUser(pid)
+  const rawEarningsBalance = getBalanceNumber(earnings)
+  const displayBalance = rawEarningsBalance.toLocaleString()
+
   return (
-    <FCard>
+    <div className="shadow-md p-8">
+      <div className="row flex flex-col md:flex-row gap-12 mb-12">
       <CardHeading
         lpLabel={lpLabel}
         multiplier={farm.multiplier}
@@ -141,35 +151,32 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
         tokenSymbol={farm.tokenSymbol}
       />
       {!removed && (
-        <Flex justifyContent="space-between" alignItems="center">
-          <Text color="yellow">{TranslateString(736, 'APR')}:</Text>
-          <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-            {farm.apy ? (
-              <>
-                <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} cakePrice={cakePrice} apy={farm.apy} />
+          <div className="apr bg-gray-300 w-full px-6 py-2 text-left flex flex-col rounded-lg justify-center">
+            <span className="apr-value text-2xl w-full text-gray-700 ">
                 {farmAPY}%
-              </>
-            ) : (
-              <Skeleton height={24} width={80} />
+            </span>
+            <span className="apr-label text-red-rasta text-md">APR</span>
+          </div>
+          // <Flex justifyContent="space-between" alignItems="center">
+          //   <Text color="yellow">{TranslateString(736, 'APR')}:</Text>
+          //   <Text bold style={{ display: 'flex', alignItems: 'center' }}>
+          //     {farm.apy ? (
+          //       <>
+          //         <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} cakePrice={cakePrice} apy={farm.apy} />
+          //         {farmAPY}%
+          //       </>
+          //     ) : (
+          //       <Skeleton height={24} width={80} />
+          //     )}
+          //   </Text>
+          // </Flex>
             )}
-          </Text>
-        </Flex>
-      )}
-      <Flex justifyContent="space-between">
-        <Text color="yellow">{TranslateString(318, 'Earn')}:</Text>
-        <Text bold>{earnLabel}</Text>
-      </Flex>
-      <Flex justifyContent="space-between">
-        <Text color="yellow">{TranslateString(318, 'Deposit Fee')}:</Text>
-        <Text bold>{farm.depositFee}%</Text>
-      </Flex>
+      </div>
+      <div className={` expanded md:block`}>
+        <FarmHarvest farmEarned={displayBalance} depositFee={farm.depositFee} pid={pid} earning={earnings}/>
       <CardActionsContainer farm={farm} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
-      <Divider />
-      <ExpandableSectionButton
-        onClick={() => setShowExpandableSection(!showExpandableSection)}
-        expanded={showExpandableSection}
-      />
-      <ExpandingWrapper expanded={showExpandableSection}>
+        {/* <Divider /> */}
+        {/* <ExpandingWrapper expanded={showExpandableSection}>
         <DetailsSection
           removed={removed}
           bscScanAddress={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
@@ -178,7 +185,13 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
           addLiquidityUrl={addLiquidityUrl}
         />
       </ExpandingWrapper>
-    </FCard>
+        <ExpandableSectionButton
+          onClick={() => setShowExpandableSection(!showExpandableSection)}
+          expanded={showExpandableSection}
+        /> */}
+        <FooterCardFarms farmBscLink={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`} farmValue={totalValueFormated} farmStake={lpLabel} addLPurl={addLiquidityUrl}/>
+      </div>
+    </div>
   )
 }
 

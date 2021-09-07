@@ -1,29 +1,36 @@
 import React, { useEffect, useCallback, useState, useMemo } from 'react'
-import { Route, useRouteMatch } from 'react-router-dom'
+import { Route, useHistory, useParams, useRouteMatch } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
-import { Image, Heading } from 'rasta-uikit'
+// import { Image, Heading } from 'rasta-uikit'
 import { BLOCKS_PER_YEAR, RASTA_PER_BLOCK, RASTA_POOL_PID } from 'config'
-import FlexLayout from 'components/layout/Flex'
-import Page from 'components/layout/Page'
+import ToggleSwitch from 'components/toggle-switch/ToggleSwitch'
+// import FlexLayout from 'components/layout/Flex'
+// import Page from 'components/layout/Page'
 import { useFarms, usePriceBnbBusd, usePriceRastaBusd, usePriceEthBusd } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
+import { useWeb3React } from '@web3-react/core'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
-import FarmTabButtons from './components/FarmTabButtons'
-import Divider from './components/Divider'
+// import FarmTabButtons from './components/FarmTabButtons'
+// import Divider from './components/Divider'
+import MrRastaImage from "../../assets/lion-mr-rasta.jpg";
+import MrsRastaImage from "../../assets/lion-mrs-rasta.jpg";
 
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
+  const history = useHistory();
   const TranslateString = useI18n()
+  const [checked, setChecked] = useState(true)
   const farmList = useFarms()
   const rastaPrice = usePriceRastaBusd()
   const bnbPrice = usePriceBnbBusd()
-  const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
+  const { ethereum }: { ethereum: provider } = useWallet()
+  const { account } = useWeb3React()
   const ethPriceUsd = usePriceEthBusd()
 
   const dispatch = useDispatch()
@@ -79,42 +86,83 @@ const Farms: React.FC = () => {
 
         return { ...farm, apy }
       })
-      return farmsToDisplayWithAPY.map((farm) => (
-        <FarmCard
-          key={farm.pid}
-          farm={farm}
-          removed={removed}
-          bnbPrice={bnbPrice}
-          cakePrice={rastaPrice}
-          ethPrice={ethPriceUsd}
-          ethereum={ethereum}
-          account={account}
-        />
-      ))
+      if (farmsToDisplayWithAPY && farmsToDisplayWithAPY.length > 0) {
+        return farmsToDisplayWithAPY.map((farm) => (
+          <FarmCard
+            key={farm.pid}
+            farm={farm}
+            removed={removed}
+            bnbPrice={bnbPrice}
+            cakePrice={rastaPrice}
+            ethPrice={ethPriceUsd}
+            ethereum={ethereum}
+            account={account}
+          />
+        ))
+      }
+      return (
+        <>
+        <div />
+            No Farm Data Found
+        </>
+      )
     },
     [farmsLP, bnbPrice, ethPriceUsd, rastaPrice, ethereum, account],
   )
 
+  useEffect(() => {
+    if (checked) history.push(`${path}`);
+    else history.push(`${path}/history`)
+  }, [checked, path, history])
+
   return (
-    <Page>
-      <Heading as="h1" size="lg" color="#292525" mb="50px" style={{ textAlign: 'center' }}>
-        {TranslateString(696, 'Stake Liquidity Pool Tokens')}
-        <br />
-        {TranslateString(696, '& Earn Brand New Rasta Tokens')}
-      </Heading>
-      <FarmTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly} />
-      <div>
-        <Divider />
-        <FlexLayout>
-          <Route exact path={`${path}`}>
-            {stackedOnly ? farmsList(stackedOnlyFarms, false) : farmsList(activeFarms, false)}
-          </Route>
-          <Route exact path={`${path}/history`}>
-            {farmsList(inactiveFarms, true)}
-          </Route>
-        </FlexLayout>
+    <div>
+      <div
+        className="flex w-full text-black flex-col bg-blend-overlay bg-black bg-opacity-50 text-white py-16 items-center"
+        style={{
+          backgroundImage: `url(${stackedOnly ? MrsRastaImage : MrRastaImage})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <h1 className="text-4xl font-bold">{stackedOnly ? "Mrs. Rasta Farms" : "Mr. Rasta Farms"}</h1>
       </div>
-    </Page>
+
+      <div className=" py-8  w-full bg-white text-black">
+        <div className=" flex flex-col text-gray-800 items-center w-10/12 mx-auto">
+          <h2 className="font-bold text-xl">{TranslateString(696, 'Stake Liquidity Pool Tokens')}</h2>
+          <p className="text-gray-700">{TranslateString(696, 'Earn Brand New Rasta Tokens')}</p>
+          <div className="toggle-button items-end flex-col flex w-full">
+            <ToggleSwitch
+              id="toggleSwitch"
+              checked={checked}
+              onChange={setChecked}
+            />
+          </div>
+          <div className="card items-center text-center w-full mt-16">
+            <div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
+                <Route exact path={`${path}`}>
+                  {stackedOnly ? farmsList(stackedOnlyFarms, false) : farmsList(activeFarms, false)}
+                </Route>
+                <Route exact path={`${path}/history`}>
+                  {farmsList(inactiveFarms, true)}
+                </Route>
+              </div>
+            </div>
+            {/* {checked && <CardsSection itemsToRender={list}/>}
+            {showMore && checked &&
+              <button onClick={loadMore} className="flex items-center justify-center mx-auto mt-8 text-md space-x-4 hover:text-red-rasta" type="button"> 
+              <FaIcons.FaChevronCircleDown/>
+              <span>Load More</span> </button>
+            }
+            {!checked && "No Farm Data Found"} */}
+          </div>
+        </div>
+      </div>
+      {/* <FarmTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly} /> */}
+    </div>
   )
 }
 

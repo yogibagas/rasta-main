@@ -5,6 +5,7 @@ import Wallet from "./CardElements/Wallet";
 import FooterCardFarms from "./CardElements/FooterCardFarms";
 
 const items = ({ itemsToRender }: {itemsToRender: any[]}) => {
+  console.log(itemsToRender);
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
@@ -12,9 +13,9 @@ const items = ({ itemsToRender }: {itemsToRender: any[]}) => {
           <div className="shadow-md p-8" key={index}>
             <RastaInfo farmName={item.name} farmLeverage={item.detail.multiple} farmWallet={item.detail.wallet} farmApr={item.detail.apr}/>
             <div className={`${index} expanded md:block`}>
-            <FarmHarvest farmEarned={item.detail.rastaEarned} depositFee={item.detail.depositFee} harvestLink={item.detail.harvestLink}/>
-            <Wallet farmWalletLink={item.detail.unlockWalletLink}/>
-            <FooterCardFarms farmStake={item.detail.stake} farmName={item.name} farmValue={item.detail.value} farmBscLink={item.detail.bscLink}/>
+            <FarmHarvest farmEarned={item.detail.rastaEarned} depositFee={item.detail.depositFee} pid="ds" earning="ad"/>
+            <Wallet />
+            <FooterCardFarms farmStake={item.detail.stake} farmValue={item.detail.value} farmBscLink={item.detail.bscLink}/>
             </div>
           </div>
         ))}

@@ -1,15 +1,15 @@
 import React, { useEffect, Suspense, lazy } from 'react'
 import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { ResetCSS } from 'rasta-uikit'
+// import { ResetCSS } from 'rasta-uikit'
 import BigNumber from 'bignumber.js'
 import { useFetchProfile, useFetchPublicData } from 'state/hooks'
 import About from 'views/About/About'
 import Footer from 'components/layout/Footer'
 import Contact from './views/Contact/Contact'
 import Farms2 from './views/Farms/Farms2'
-import GlobalStyle from './style/Global'
-import Menu from './components/Menu'
+// import GlobalStyle from './style/Global'
+// import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 import Stake from './views/Stake'
@@ -55,7 +55,7 @@ const App: React.FC = () => {
   useFetchProfile()
 
   return (
-    <div className="bg-black font-roboto h-screen text-white">
+    <div className="bg-black font-roboto text-white relative">
     <Router history={history}>
       {/* <ResetCSS /> */}
       {/* <GlobalStyle /> */}

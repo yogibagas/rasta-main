@@ -12,6 +12,7 @@ import UnlockButton from 'components/UnlockButton'
 import { useApprove } from 'hooks/useApprove'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
+import Wallet from '../CardElements/Wallet'
 
 const Action = styled.div`
   padding-top: 16px;
@@ -70,10 +71,10 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
 
   return (
     <Action>
-      <Flex>
-        <Text bold textTransform="uppercase" color="yellow" fontSize="12px" pr="3px">
+      {/* <Flex>
+        <Text bold textTransform="uppercase" color="yellow" fontSize="12px" pr="3px"> */}
           {/* TODO: Is there a way to get a dynamic value here from useFarmFromSymbol? */}
-          RASTA
+          {/* RASTA
         </Text>
         <Text bold textTransform="uppercase" fontSize="12px">
           {TranslateString(1072, 'Earned')}
@@ -87,8 +88,8 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
         <Text bold textTransform="uppercase" fontSize="12px">
           {TranslateString(1074, 'Staked')}
         </Text>
-      </Flex>
-      {!account ? <UnlockButton mt="8px" fullWidth /> : renderApprovalOrStakeButton()}
+      </Flex> */}
+      {!account ? <Wallet /> : renderApprovalOrStakeButton()}
     </Action>
   )
 }
