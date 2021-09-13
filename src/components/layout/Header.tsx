@@ -78,7 +78,7 @@ export default function Header() {
               <LazyLoadImage
                 src={Logo}
                 alt="Logo"
-                className="w-64 mx-auto"
+                className="w-64 mx-auto d-block"
                 effect="blur"
               />
             </Link>

@@ -28,7 +28,7 @@ Interact with your favorite artist, pledge support, and earn money.
 All through your own private screen and wallet.
               </p>
             </div>
-            <div className="cta flex flex-row mt-8 space-x-8 items-center text-center">
+            <div className="cta flex flex-row mt-4 space-x-8 items-center text-center">
               <Router>
                 <Link
                   to="/"
@@ -41,7 +41,7 @@ All through your own private screen and wallet.
           </div>
         </div>
       </div>
-      <div className="bg-gradient-to-r text-white from-red-rasta to-yellow-rasta py-8 pb-16">
+      <div className="bg-gradient-to-r text-white from-red-rasta to-yellow-rasta py-16">
         <div className="flex flex-col md:flex-row w-full px-4 md:px-0 md:w-10/12 mx-auto items-center">
           <div className="text w-full md:w-8/12 text-center md:text-left">
             <span className="text-2xl font-bold block">REQUEST A LAUNCH:</span>
