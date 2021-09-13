@@ -15,7 +15,7 @@ export default function HeroSection() {
       <div className="flex w-full  py-16 bg-gradient-to-b from-black to-red-rasta via-black text-white flex-col">
         <div className="flex w-full px-8 md:px-0 md:max-w-screen-xl md:mx-auto items-center flex-col md:flex-row">
           <div className="leftSection w-full md:w-6/12">
-            <h1 className="text-5xl font-bold text-center md:text-left md:pr-48 leading-tight">
+            <h1 className="text-4xl font-bold text-center md:text-left md:pr-48 leading-tight">
               <span className='text-yellow-rasta'>Pride and Joy</span><br /> of the Binance Smart Chain
             </h1>
             <p className="mt-8 text-center md:text-left">Join thousands of Rastas on a journey to ZION. RastaFinance is decentralizing finance,
