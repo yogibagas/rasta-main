@@ -32,21 +32,21 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   return (
     <>
     <div className="items-detail flex flex-col border-b-2 pb-2 border-black flex-grow-1">
-      <h2 className="text-3xl font-bold text-left">{lpLabel}</h2>
+      <h2 className="text-2xl font-bold text-left">{lpLabel}</h2>
       <div className="coin-info flex  items-center">
         {lpLabel.includes('RASTA') &&
-        <div className="core text-center items-center flex-grow-1 flex flex-row space-x-2 border-2 border-orange-rasta rounded-full py-2 px-4">
+        <div className="core text-center items-center flex-grow-1 flex flex-row space-x-2 border-2 border-orange-rasta rounded-full py-1 px-2">
           <FaIcons.FaCheckCircle className="fill-current text-orange-rasta mx-auto my-auto text-2xl" />
           <span className="text">CORE</span>
         </div>}
-        <div className="core p-2 flex-grow-1 text-center ">
-          <span className="px-4 py-2 bg-orange-rasta text-white rounded-full">
+        <div className="core p-1 lg:p-2 flex-grow-1 text-center ">
+          <span className="px-2 py-1 bg-orange-rasta text-white rounded-full">
             {multiplier}
           </span>
         </div>
-        <div className="core p-2 text-left">
+        <div className="core p-1 lg:p-2 text-left">
           <div className="bg-orange-rasta rounded-full w-12 h-12  ">
-      <Image src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} width={64} height={64} />
+            <Image src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} width={64} height={64} />
           </div>
         </div>
       </div>
