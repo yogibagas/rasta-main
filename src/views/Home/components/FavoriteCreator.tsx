@@ -15,7 +15,7 @@ export default function FavoriteCreator() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="flex w-full md:max-w-screen-xl md:mx-auto items-center items-center md:flex-row text-center items-center h-64">
+        <div className="flex w-full md:max-w-screen-xl md:mx-auto items-center items-center md:flex-row text-center">
           <div className="leftSection w-full ">
             <h2 className="text-2xl md:text-5xl font-bold leading-tight">
               Interact with Your Favorite Creators.<br/>
@@ -51,7 +51,7 @@ All through your own private screen and wallet.
               RastaCommunity.
             </span>
           </div>
-          <div className="text w-full md:w-4/12 text-center mt-8   md:text-right">
+          <div className="text w-full md:w-4/12 text-center mt-8 mb-6  md:text-right">
             <Router>
               <Link
                 to="/"
