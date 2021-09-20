@@ -55,7 +55,7 @@ export default function Sidebar() {
                 label: "Mr. Rasta",
                 },
                 {
-                path: "https://m.rasta.finance/farms",
+                path: "https://mrasta-six.vercel.app/farms/history",
                 label: "Mrs. Rasta",
                 },
             ],
