@@ -51,7 +51,7 @@ All through your own private screen and wallet.
               RastaCommunity.
             </span>
           </div>
-          <div className="text w-full md:w-4/12 text-center mt-8 mb-6  md:text-right">
+          <div className="text w-full md:w-4/12 text-center md:mt-8  md:text-right">
             <Router>
               <Link
                 to="/"

@@ -9,13 +9,13 @@ type Props = {
 export default function LetsConnect({bg, items}: Props) {
   return (
     <div
-      className="w-full py-64 px-4 items-center flex"
+      className="w-full pt-64 pb-16 md:pt-0 md:pb-0 md:py-64 px-0 md:px-4 items-center flex"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundSize: "cover",
       }}
     >
-      <div className="max-w-screen-xl ml-2 md:mx-auto bg-white text-black flex px-8 md:px-48 py-12 flex-col md:flex-row mt-8 md:mt-32">
+      <div className="max-w-screen-xl md:ml-2 md:mx-auto bg-white text-black flex px-8 mt-2 md:px-48 py-12 flex-col md:flex-row mt-8 md:mt-32">
         <div className="rastaFinance flex flex-col flex-grow-1">
           <h2 className="text-2xl font-bold text-center md:text-left">{items.heading}</h2>
           <div className="list-content mt-4 md:mt-12 ">

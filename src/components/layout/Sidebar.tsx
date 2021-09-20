@@ -137,7 +137,7 @@ export default function Sidebar() {
         </span>
         <ul className="menu-items text-white mt-12 text-2xl space-y-4">
           {menu.map((item, index) => {
-            return (<MenuItem key={index} menu={item} onClick={showSidebar}/>)
+            return (<MenuItem key={index} menu={item} showSidebar={showSidebar}/>)
           })}
         </ul>
       </nav>

@@ -6,7 +6,7 @@ export default function MenuItem({menu, showSidebar}) {
     const [children, setChildren] = useState(false);
     const showChildren = () => {
         setChildren(!children);
-        console.log("aaaa", children)
+        showSidebar = false;
     }
     return (
         <li key={menu.label}>
