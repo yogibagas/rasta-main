@@ -71,7 +71,7 @@ export default function Footer() {
                 key={index}
               >
                 {item.title}
-                  <ul className="list-none mt-6 text-yellow-rasta">
+                  <ul className="list-none mt-0 md:mt-6 text-yellow-rasta">
                     <ShowLinks items={item.item} />
                   </ul>
               </div>

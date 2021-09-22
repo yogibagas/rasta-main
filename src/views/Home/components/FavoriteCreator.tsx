@@ -42,7 +42,7 @@ All through your own private screen and wallet.
         </div>
       </div>
       <div className="bg-gradient-to-r text-white from-red-rasta to-yellow-rasta py-16">
-        <div className="flex flex-col md:flex-row w-full px-4 md:px-0 md:w-10/12 mx-auto items-center">
+        <div className="flex flex-col md:flex-row w-full px-4  space-y-6  md:space-y-0 md:px-0 md:w-10/12 mx-autoitems-center">
           <div className="text w-full md:w-8/12 text-center md:text-left">
             <span className="text-2xl font-bold block">REQUEST A LAUNCH:</span>
             <span className="block">
@@ -55,7 +55,7 @@ All through your own private screen and wallet.
             <Router>
               <Link
                 to="/"
-                className="bg-red-rasta font-bold text-white mx-auto text-center py-4 px-8  rounded-xl"
+                className="bg-red-rasta font-bold text-white mx-auto text-center py-4 px-8 mb-8 md:mb-0 rounded-xl"
               >
                 <button type="button">SIGN IN AS AN ARTIST</button>
               </Link>
