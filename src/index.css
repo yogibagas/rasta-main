@@ -39,3 +39,7 @@
 .d-block {
     display: block !important;
 }
+
+header .lazy-load-img-background {
+    display: block !important;
+}
