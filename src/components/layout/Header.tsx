@@ -107,7 +107,7 @@ export default function Header() {
       {showModal ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-1/3 my-6 mx-auto max-w-3xl">
+            <div className="relative w-full md:w-1/3 my-6 mx-auto max-w-3xl">
               {/* content */}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-rasta pb-8 outline-none focus:outline-none">
                 {/* header */}
@@ -127,7 +127,7 @@ export default function Header() {
                 </div>
                 {/* body */}
                 <div className="relative p-6 flex">
-                  <div className="grid grid-cols-3 mx-auto gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-3 mx-auto gap-4">
                     {wallet.map((item, index) => {
                       return (<span className="wallet-wrap flex flex-col space-y-3 bg-gray-inBlack px-2 py-4 rounded-xl items-center cursor-pointer" onClick={(e) => connectWallet(item.link)} key={index}>
                         <span><img src={item.icon} alt="icon" /></span>
