@@ -40,6 +40,6 @@
     display: block !important;
 }
 
-header .lazy-load-image-background.blur.lazy-load-image-loaded {
+header .lazy-load-img-background {
     display: block !important;
 }
