@@ -15,7 +15,7 @@ import PageLoader from './components/PageLoader'
 import Stake from './views/Stake'
 import GlobalCheckBullHiccupClaimStatus from './views/Collectibles/components/GlobalCheckBullHiccupClaimStatus'
 import history from './routerHistory'
-import Header from "./components/layout/Header"
+import Header from './components/layout/Header'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -56,10 +56,10 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-black font-roboto text-white relative">
-    <Router history={history}>
-      {/* <ResetCSS /> */}
-      {/* <GlobalStyle /> */}
-      {/* <Menu> */}
+      <Router history={history}>
+        {/* <ResetCSS /> */}
+        {/* <GlobalStyle /> */}
+        {/* <Menu> */}
         <Header />
         <Suspense fallback={<PageLoader />}>
           <Switch>
@@ -116,11 +116,11 @@ const App: React.FC = () => {
             <Route component={NotFound} />
           </Switch>
         </Suspense>
-      {/* </Menu> */}
-      <Footer />
-      <ToastListener />
-      <GlobalCheckBullHiccupClaimStatus />
-    </Router>
+        {/* </Menu> */}
+        <Footer />
+        <ToastListener />
+        <GlobalCheckBullHiccupClaimStatus />
+      </Router>
     </div>
   )
 }

@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 type Props = {
-  fields: any[],
+  fields: any[]
   contactInfo: any
 }
-export default function Form({fields, contactInfo}: Props) {
+export default function Form({ fields, contactInfo }: Props) {
   return (
     <div className="bg-white pb-32 flex px-8 md:px-0">
       <div className="max-w-screen-xl mx-auto bg-white shadow-box flex flex-col md:flex-row  -mt-32 md:-mt-64 w-full md:px-0">
@@ -23,7 +23,7 @@ export default function Form({fields, contactInfo}: Props) {
                      border-b-1 border-gray-400"
                     />
                   </div>
-                );
+                )
               })}
             </div>
             <div className="button w-full flex items-center mt-24">
@@ -42,15 +42,12 @@ export default function Form({fields, contactInfo}: Props) {
             {contactInfo.detail.map((item, index) => {
               return (
                 <div className="" key={index}>
-                  <Link
-                    to={item.link}
-                    className="flex flex-row flex-grow-1 items-center space-x-4 "
-                  >
+                  <Link to={item.link} className="flex flex-row flex-grow-1 items-center space-x-4 ">
                     <span className="text-2xl">{item.icon}</span>
                     <span>{item.text}</span>
                   </Link>
                 </div>
-              );
+              )
             })}
           </div>
           <div className="social mt-16 md:mt-24 flex flex-row space-x-4">
@@ -63,11 +60,11 @@ export default function Form({fields, contactInfo}: Props) {
                 >
                   {item.icon}
                 </Link>
-              );
+              )
             })}
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

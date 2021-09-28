@@ -23,12 +23,12 @@ import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 // import Divider from './components/Divider'
 // import PoolCard from '../Stake/components/PoolCard'
 
-import MrRastaImage from "../../assets/lion-mr-rasta.jpg";
-import MrsRastaImage from "../../assets/lion-mrs-rasta.jpg";
+import MrRastaImage from '../../assets/lion-mr-rasta.jpg'
+import MrsRastaImage from '../../assets/lion-mrs-rasta.jpg'
 
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
-  const history = useHistory();
+  const history = useHistory()
   const TranslateString = useI18n()
   const farmList = useFarms()
   const rastaPrice = usePriceRastaBusd()
@@ -118,8 +118,8 @@ const Farms: React.FC = () => {
       }
       return (
         <>
-        <div />
-            No Pool Data Found
+          <div />
+          No Pool Data Found
         </>
       )
     },
@@ -141,33 +141,29 @@ const Farms: React.FC = () => {
   // })
 
   useEffect(() => {
-    if (checked) history.push(`${path}`);
+    if (checked) history.push(`${path}`)
     else history.push(`${path}/history`)
   }, [checked, path, history])
 
   return (
     <div>
       <div
-        className="flex w-full text-black flex-col bg-blend-overlay bg-black bg-opacity-50 text-white py-16 items-center"
+        className="flex w-full flex-col bg-blend-overlay bg-black bg-opacity-50 text-white py-16 items-center"
         style={{
           backgroundImage: `url(${stackedOnly ? MrsRastaImage : MrRastaImage})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
         }}
       >
-        <h1 className="text-4xl font-bold">{stackedOnly ? "Mrs. Rasta Pools" : "Mr. Rasta Pools"}</h1>
+        <h1 className="text-4xl font-bold">{stackedOnly ? 'Mrs. Rasta Pools' : 'Mr. Rasta Pools'}</h1>
       </div>
       <div className=" py-8  w-full bg-white text-black">
         <div className=" flex flex-col text-gray-800 items-center w-10/12 mx-auto">
           <h2 className="font-bold text-xl">{TranslateString(696, 'Stake Tokens')}</h2>
           <p className="text-gray-700">{TranslateString(696, 'Earn Brand New Rasta Tokens')}</p>
           <div className="toggle-button items-end flex-col flex w-full">
-            <ToggleSwitch
-              id="toggleSwitch"
-              checked={checked}
-              onChange={setChecked}
-            />
+            <ToggleSwitch id="toggleSwitch" checked={checked} onChange={setChecked} />
           </div>
           <div className="card items-center text-center w-full mt-16">
             <div>

@@ -12,9 +12,9 @@ import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 import WinCard from 'views/Home/components/WinCard'
 import CountDown from 'components/CountDown'
 
-import HeroSection from './components/HeroSection';
-import Community from './components/Community';
-import FavCreator from "./components/FavoriteCreator";
+import HeroSection from './components/HeroSection'
+import Community from './components/Community'
+import FavCreator from './components/FavoriteCreator'
 
 const Hero = styled.div`
   align-items: center;
@@ -128,13 +128,13 @@ const Home: React.FC = () => {
     //     </CTACards>
     //   </div>
     // </Page>
-      <div>
-        <section>
-            <HeroSection/>
-            <Community/>
-            <FavCreator/>
-        </section>
-      </div>
+    <div>
+      <section>
+        <HeroSection />
+        <Community />
+        <FavCreator />
+      </section>
+    </div>
   )
 }
 

@@ -1,18 +1,18 @@
-import React from "react";
-import * as TiIcons from "react-icons/ti";
-import { Link } from "react-router-dom";
+import React from 'react'
+import * as TiIcons from 'react-icons/ti'
+import { Link } from 'react-router-dom'
 
 type Props = {
-  bg: any,
+  bg: any
   items: any
 }
-export default function LetsConnect({bg, items}: Props) {
+export default function LetsConnect({ bg, items }: Props) {
   return (
     <div
       className="w-full pt-64 pb-16 md:pt-0 md:pb-0 md:py-64 px-0 md:px-4 items-center flex"
       style={{
         backgroundImage: `url(${bg})`,
-        backgroundSize: "cover",
+        backgroundSize: 'cover',
       }}
     >
       <div className="max-w-screen-xl md:ml-2 md:mx-auto bg-white text-black flex px-8 mt-2 md:px-48 py-12 flex-col md:flex-row mt-8 md:mt-32">
@@ -21,16 +21,13 @@ export default function LetsConnect({bg, items}: Props) {
           <div className="list-content mt-4 md:mt-12 ">
             {items.listContent.map((item, index) => {
               return (
-                <div
-                  className="flex flex-row item-list items-center  px-16 md:px-0"
-                  key={item}
-                >
+                <div className="flex flex-row item-list items-center  px-16 md:px-0" key={item}>
                   <span className="icon text-green-rasta text-2xl">
                     <TiIcons.TiTick />
                   </span>
                   <span className="icon  font-bold flex-grow-1">{item}</span>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
@@ -62,11 +59,11 @@ export default function LetsConnect({bg, items}: Props) {
                     {item.icon}
                   </div>
                 </Link>
-              );
+              )
             })}
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

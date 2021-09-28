@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { Button, Flex, Heading } from 'rasta-uikit'
 import useI18n from 'hooks/useI18n'
-import * as FaIcons from "react-icons/fa";
+import * as FaIcons from 'react-icons/fa'
 import { useHarvest } from 'hooks/useHarvest'
 import { getBalanceNumber } from 'utils/formatBalance'
 
@@ -21,14 +21,18 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
 
   return (
     <div className="harvest flex mt-4 bg-gradient-to-l text-white w-full from-green-rasta to-yellow-rasta  rounded-xl">
-      <button disabled={rawEarningsBalance === 0 || pendingTx} type="button" className="px-12 py-2 flex-row space-x-2 flex w-full items-center justify-center cursor-pointer"
-        onClick={ async () => {
+      <button
+        disabled={rawEarningsBalance === 0 || pendingTx}
+        type="button"
+        className="px-12 py-2 flex-row space-x-2 flex w-full items-center justify-center cursor-pointer"
+        onClick={async () => {
           setPendingTx(true)
           await onReward()
           setPendingTx(false)
-        }}>
-          <FaIcons.FaSearchDollar/>
-          <span>Harvest</span>
+        }}
+      >
+        <FaIcons.FaSearchDollar />
+        <span>Harvest</span>
       </button>
     </div>
     // <Flex mb="8px" justifyContent="space-between" alignItems="center">

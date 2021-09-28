@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from "prop-types";
-import "./ToggleSwitch.css";
-
+import PropTypes from 'prop-types'
+import './ToggleSwitch.css'
 
 /*
 Toggle Switch Component
@@ -11,13 +10,13 @@ Usage: <ToggleSwitch id="id" checked={value} onChange={checked => setValue(check
 */
 
 type Props = {
-    id: string,
-    checked: boolean,
-    onChange: (p: boolean) => void,
-    name?: string,
-    optionLabels?: any[],
-    small?: boolean,
-    disabled?: boolean
+  id: string
+  checked: boolean
+  onChange: (p: boolean) => void
+  name?: string
+  optionLabels?: any[]
+  small?: boolean
+  disabled?: boolean
 }
 
 const ToggleSwitch = ({
@@ -25,19 +24,19 @@ const ToggleSwitch = ({
   name,
   checked,
   onChange,
-  optionLabels = ["Active", "Inactive"],
+  optionLabels = ['Active', 'Inactive'],
   small,
-  disabled
+  disabled,
 }: Props) => {
   function handleKeyPress(e) {
-    if (e.keyCode !== 32) return;
+    if (e.keyCode !== 32) return
 
-    e.preventDefault();
-    onChange(!checked);
+    e.preventDefault()
+    onChange(!checked)
   }
 
   return (
-    <div className={`toggle-switch w-24 ${small ? " small-switch" : ""}`}>
+    <div className={`toggle-switch w-24 ${small ? ' small-switch' : ''}`}>
       <input
         type="checkbox"
         name={name}
@@ -55,28 +54,19 @@ const ToggleSwitch = ({
           htmlFor={id}
         >
           <span
-            className={
-              disabled
-                ? "toggle-switch-inner toggle-switch-disabled"
-                : "toggle-switch-inner"
-            }
+            className={disabled ? 'toggle-switch-inner toggle-switch-disabled' : 'toggle-switch-inner'}
             data-yes={optionLabels[0]}
             data-no={optionLabels[1]}
             tabIndex={-1}
           />
           <span
-            className={
-              disabled
-                ? "toggle-switch-switch toggle-switch-disabled"
-                : "toggle-switch-switch"
-            }
+            className={disabled ? 'toggle-switch-switch toggle-switch-disabled' : 'toggle-switch-switch'}
             tabIndex={-1}
           />
         </label>
       ) : null}
     </div>
-  );
-};
+  )
+}
 
-
-export default ToggleSwitch;
+export default ToggleSwitch

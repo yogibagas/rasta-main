@@ -143,18 +143,16 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
   return (
     <div className="shadow-md p-5 pt-8 pb-8">
       <div className="row flex flex-col md:flex-row gap-5 mb-12">
-      <CardHeading
-        lpLabel={lpLabel}
-        multiplier={farm.multiplier}
-        isCommunityFarm={isCommunityFarm}
-        farmImage={farmImage}
-        tokenSymbol={farm.tokenSymbol}
-      />
-      {!removed && (
+        <CardHeading
+          lpLabel={lpLabel}
+          multiplier={farm.multiplier}
+          isCommunityFarm={isCommunityFarm}
+          farmImage={farmImage}
+          tokenSymbol={farm.tokenSymbol}
+        />
+        {!removed && (
           <div className="apr bg-gray-300 w-full flex flex-col rounded-lg justify-center text-center">
-            <span className="apr-value text-2xl w-full text-gray-700 ">
-                {farmAPY}%
-            </span>
+            <span className="apr-value text-2xl w-full text-gray-700 ">{farmAPY}%</span>
             <span className="apr-label text-red-rasta text-md">APR</span>
           </div>
           // <Flex justifyContent="space-between" alignItems="center">
@@ -170,11 +168,11 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
           //     )}
           //   </Text>
           // </Flex>
-            )}
+        )}
       </div>
       <div className={` expanded md:block`}>
-        <FarmHarvest farmEarned={displayBalance} depositFee={farm.depositFee} pid={pid} earning={earnings}/>
-      <CardActionsContainer farm={farm} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
+        <FarmHarvest farmEarned={displayBalance} depositFee={farm.depositFee} pid={pid} earning={earnings} />
+        <CardActionsContainer farm={farm} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
         {/* <Divider /> */}
         {/* <ExpandingWrapper expanded={showExpandableSection}>
         <DetailsSection
@@ -189,7 +187,12 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
           onClick={() => setShowExpandableSection(!showExpandableSection)}
           expanded={showExpandableSection}
         /> */}
-        <FooterCardFarms farmBscLink={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`} farmValue={totalValueFormated} farmStake={lpLabel} addLPurl={addLiquidityUrl}/>
+        <FooterCardFarms
+          farmBscLink={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
+          farmValue={totalValueFormated}
+          farmStake={lpLabel}
+          addLPurl={addLiquidityUrl}
+        />
       </div>
     </div>
   )

@@ -1,37 +1,37 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
-import { slice, concat } from "lodash";
-import { useFarms, usePriceBnbBusd, usePriceEthBusd, usePriceRastaBusd } from "state/hooks";
-import useI18n from "hooks/useI18n";
-import useRefresh from "hooks/useRefresh";
-import { useWeb3React } from "@web3-react/core";
-import { useDispatch } from "react-redux";
-import { fetchFarmUserDataAsync } from "state/farms";
-import BigNumber from "bignumber.js";
-import { FarmWithStakedValue } from "views/Pools/components/FarmCard/FarmCard";
-import { useWallet } from "@binance-chain/bsc-use-wallet";
-import { BLOCKS_PER_YEAR, RASTA_PER_BLOCK, RASTA_POOL_PID } from "config";
-import { QuoteToken } from "config/constants/types";
+import React, { useState, useEffect, useCallback } from 'react'
+import { useParams } from 'react-router-dom'
+import { slice, concat } from 'lodash'
+import { useFarms, usePriceBnbBusd, usePriceEthBusd, usePriceRastaBusd } from 'state/hooks'
+import useI18n from 'hooks/useI18n'
+import useRefresh from 'hooks/useRefresh'
+import { useWeb3React } from '@web3-react/core'
+import { useDispatch } from 'react-redux'
+import { fetchFarmUserDataAsync } from 'state/farms'
+import BigNumber from 'bignumber.js'
+import { FarmWithStakedValue } from 'views/Pools/components/FarmCard/FarmCard'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { BLOCKS_PER_YEAR, RASTA_PER_BLOCK, RASTA_POOL_PID } from 'config'
+import { QuoteToken } from 'config/constants/types'
 
-import * as FaIcons from "react-icons/fa";
-import CardsSection from "./components/CardSection";
-import MrRastaImage from "../../assets/lion-mr-rasta.jpg";
-import BinanceLogo from "../../assets/Binance-Icon-Logo.svg";
-import MrsRastaImage from "../../assets/lion-mrs-rasta.jpg";
-import ToggleSwitch from "../../components/toggle-switch/ToggleSwitch";
+import * as FaIcons from 'react-icons/fa'
+import CardsSection from './components/CardSection'
+import MrRastaImage from '../../assets/lion-mr-rasta.jpg'
+import BinanceLogo from '../../assets/Binance-Icon-Logo.svg'
+import MrsRastaImage from '../../assets/lion-mrs-rasta.jpg'
+import ToggleSwitch from '../../components/toggle-switch/ToggleSwitch'
 
 interface ParamTypes {
-    farm: string
+  farm: string
 }
 export default function Farms2() {
-  const {farm} = useParams<ParamTypes>();
-  let pages = null;
-  const farmList = useFarms();
-  const TranslateString = useI18n();
-  const rastaPrice = usePriceRastaBusd();
-  const bnbPrice = usePriceBnbBusd();
+  const { farm } = useParams<ParamTypes>()
+  let pages = null
+  const farmList = useFarms()
+  const TranslateString = useI18n()
+  const rastaPrice = usePriceRastaBusd()
+  const bnbPrice = usePriceBnbBusd()
   const ethPriceUsd = usePriceEthBusd()
-  const {account, ethereum} = useWallet();
+  const { account, ethereum } = useWallet()
 
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
@@ -49,282 +49,282 @@ export default function Farms2() {
   const stackedOnlyFarms = activeFarms.filter(
     (f) => f.userData && new BigNumber(f.userData.stakedBalance).isGreaterThan(0),
   )
-  if(farm === "mr-rasta")
+  if (farm === 'mr-rasta')
     pages = {
-        name: "mr-rasta",
-        page: {
-          header_img: MrRastaImage,
-          title: "Mr. Rasta Farms",
-          subtitle: "Stake Liquidity Pool Tokens",
-          desc: "Earn Brand New Rasta Tokens",
-          card: {
-            pages: 3,
-            content: [
-              {
-                name: "M - RASTA 1",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "/",
-                  unlockWalletLink: "/",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                  bscLink: "/",
-                },
+      name: 'mr-rasta',
+      page: {
+        header_img: MrRastaImage,
+        title: 'Mr. Rasta Farms',
+        subtitle: 'Stake Liquidity Pool Tokens',
+        desc: 'Earn Brand New Rasta Tokens',
+        card: {
+          pages: 3,
+          content: [
+            {
+              name: 'M - RASTA 1',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '/',
+                unlockWalletLink: '/',
+                stake: 'Total Liquidity',
+                value: '47,581',
+                bscLink: '/',
               },
-              {
-                name: "M - RASTA 2",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 2',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-              {
-                name: "M - RASTA 3",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 3',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-              {
-                name: "M - RASTA 4",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 4',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-              {
-                name: "M - RASTA 5",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 5',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-              {
-                name: "M - RASTA 6",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 6',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-            ],
-          },
+            },
+          ],
         },
-      };
+      },
+    }
   else
     pages = {
-        name: "mr-rasta",
-        page: {
-          header_img: MrsRastaImage,
-          title: "Mrs. Rasta Farms",
-          subtitle: "Stake Liquidity Pool Tokens",
-          desc: "Earn Brand New Rasta Tokens",
-          card: {
-            pages: 3,
-            content: [
-              {
-                name: "M - RASTA 1",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "/",
-                  unlockWalletLink: "/",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                  bscLink: "/",
-                },
+      name: 'mr-rasta',
+      page: {
+        header_img: MrsRastaImage,
+        title: 'Mrs. Rasta Farms',
+        subtitle: 'Stake Liquidity Pool Tokens',
+        desc: 'Earn Brand New Rasta Tokens',
+        card: {
+          pages: 3,
+          content: [
+            {
+              name: 'M - RASTA 1',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '/',
+                unlockWalletLink: '/',
+                stake: 'Total Liquidity',
+                value: '47,581',
+                bscLink: '/',
               },
-              {
-                name: "M - RASTA 2",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 2',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-              {
-                name: "M - RASTA 3",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 3',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-              {
-                name: "M - RASTA 4",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 4',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-              {
-                name: "M - RASTA 5",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 5',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-              {
-                name: "M - RASTA 6",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 6',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-              {
-                name: "M - RASTA 6",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 6',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-              {
-                name: "M - RASTA 6",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 6',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-              {
-                name: "M - RASTA 6",
-                detail: {
-                  core: "Core",
-                  multiple: "35x",
-                  wallet: BinanceLogo,
-                  apr: "256.08",
-                  depositFee: "0",
-                  rastaEarned: "0",
-                  harvesLink: "",
-                  unlockWalletLink: "",
-                  stake: "Total Liquidity",
-                  value: "47,581",
-                },
+            },
+            {
+              name: 'M - RASTA 6',
+              detail: {
+                core: 'Core',
+                multiple: '35x',
+                wallet: BinanceLogo,
+                apr: '256.08',
+                depositFee: '0',
+                rastaEarned: '0',
+                harvesLink: '',
+                unlockWalletLink: '',
+                stake: 'Total Liquidity',
+                value: '47,581',
               },
-            ],
-          },
+            },
+          ],
         },
-      }
+      },
+    }
 
-  const farmPage = pages;
-  const [checked, setChecked] = useState(false);
+  const farmPage = pages
+  const [checked, setChecked] = useState(false)
 
-  const LENGTH = farmPage.page.card.content.length;
-  const DATA = farmPage.page.card.content;
-  const LIMIT = 3;
+  const LENGTH = farmPage.page.card.content.length
+  const DATA = farmPage.page.card.content
+  const LIMIT = 3
 
-  const [showMore, setShowMore] = useState(true);
-  const [list, setList] = useState(slice(DATA, 0, LIMIT));
-  const [index, setIndex] = useState(LIMIT);
+  const [showMore, setShowMore] = useState(true)
+  const [list, setList] = useState(slice(DATA, 0, LIMIT))
+  const [index, setIndex] = useState(LIMIT)
   const loadMore = () => {
-    const newIndex = index + LIMIT;
-    const newShowMore = newIndex < LENGTH - 1;
-    const newList = concat(list, slice(DATA, index, newIndex));
-    setIndex(newIndex);
-    setList(newList);
-    setShowMore(newShowMore);
-  };
+    const newIndex = index + LIMIT
+    const newShowMore = newIndex < LENGTH - 1
+    const newList = concat(list, slice(DATA, index, newIndex))
+    setIndex(newIndex)
+    setList(newList)
+    setShowMore(newShowMore)
+  }
 
   const farmsList = useCallback(
     (farmsToDisplay, removed: boolean) => {
@@ -360,7 +360,7 @@ export default function Farms2() {
 
         return { ...f, apy }
       })
-      return <CardsSection itemsToRender={farmsToDisplayWithAPY}/>
+      return <CardsSection itemsToRender={farmsToDisplayWithAPY} />
     },
     [farmsLP, bnbPrice, ethPriceUsd, rastaPrice, farm],
   )
@@ -371,9 +371,9 @@ export default function Farms2() {
         className="flex w-full text-black flex-col bg-blend-overlay bg-black bg-opacity-50 text-white py-16 items-center"
         style={{
           backgroundImage: `url(${farmPage.page.header_img})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
         }}
       >
         <h1 className="text-4xl font-bold">{farmPage.page.title}</h1>
@@ -383,23 +383,24 @@ export default function Farms2() {
           <h2 className="font-bold text-xl">{farmPage.page.subtitle}</h2>
           <p className="text-gray-700">{farmPage.page.desc}</p>
           <div className="toggle-button items-end flex-col flex w-full">
-            <ToggleSwitch
-              id="toggleSwitch"
-              checked={checked}
-              onChange={setChecked}
-            />
+            <ToggleSwitch id="toggleSwitch" checked={checked} onChange={setChecked} />
           </div>
           <div className="card items-center text-center w-full mt-16">
-            {checked && <CardsSection itemsToRender={list}/>}
-            {showMore && checked &&
-              <button onClick={loadMore} className="flex items-center justify-center mx-auto mt-8 text-md space-x-4 hover:text-red-rasta" type="button"> 
-              <FaIcons.FaChevronCircleDown/>
-              <span>Load More</span> </button>
-            }
-            {!checked && "No Farm Data Found"}
+            {checked && <CardsSection itemsToRender={list} />}
+            {showMore && checked && (
+              <button
+                onClick={loadMore}
+                className="flex items-center justify-center mx-auto mt-8 text-md space-x-4 hover:text-red-rasta"
+                type="button"
+              >
+                <FaIcons.FaChevronCircleDown />
+                <span>Load More</span>{' '}
+              </button>
+            )}
+            {!checked && 'No Farm Data Found'}
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

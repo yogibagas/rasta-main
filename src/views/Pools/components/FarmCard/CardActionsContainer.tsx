@@ -73,8 +73,8 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
     <Action>
       {/* <Flex>
         <Text bold textTransform="uppercase" color="yellow" fontSize="12px" pr="3px"> */}
-          {/* TODO: Is there a way to get a dynamic value here from useFarmFromSymbol? */}
-          {/* RASTA
+      {/* TODO: Is there a way to get a dynamic value here from useFarmFromSymbol? */}
+      {/* RASTA
         </Text>
         <Text bold textTransform="uppercase" fontSize="12px">
           {TranslateString(1072, 'Earned')}

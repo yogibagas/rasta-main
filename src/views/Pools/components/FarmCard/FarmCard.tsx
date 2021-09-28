@@ -152,9 +152,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, ethereum,
         />
         {!removed && (
           <div className="apr bg-gray-300 w-full px-6 py-2 text-left flex flex-col rounded-lg justify-center">
-            <span className="apr-value text-2xl w-full text-gray-700 ">
-              {farmAPY}%
-            </span>
+            <span className="apr-value text-2xl w-full text-gray-700 ">{farmAPY}%</span>
             <span className="apr-label text-red-rasta text-md">APR</span>
           </div>
           // <Flex justifyContent="space-between" alignItems="center">
@@ -173,7 +171,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, ethereum,
         )}
       </div>
       <div className={` expanded md:block`}>
-        <FarmHarvest farmEarned={displayBalance} depositFee={farm.depositFee} pid={pid} earning={earnings}/>
+        <FarmHarvest farmEarned={displayBalance} depositFee={farm.depositFee} pid={pid} earning={earnings} />
       </div>
       {/* <Flex justifyContent="space-between">
         <Text color="yellow">{TranslateString(318, 'Earn')}:</Text>
@@ -198,7 +196,12 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, ethereum,
           addLiquidityUrl={addLiquidityUrl}
         />
       </ExpandingWrapper> */}
-      <FooterCardFarms farmBscLink={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`} farmValue={totalValueFormated} farmStake={lpLabel} addLPurl={addLiquidityUrl}/>
+      <FooterCardFarms
+        farmBscLink={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
+        farmValue={totalValueFormated}
+        farmStake={lpLabel}
+        addLPurl={addLiquidityUrl}
+      />
     </div>
   )
 }
