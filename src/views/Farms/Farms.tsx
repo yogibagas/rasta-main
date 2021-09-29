@@ -118,7 +118,7 @@ const Farms: React.FC = () => {
   return (
     <div>
       <div
-        className="flex w-full text-black flex-col bg-blend-overlay bg-black bg-opacity-50 text-white py-16 items-center"
+        className="flex w-full flex-col bg-blend-overlay bg-black bg-opacity-50 text-white py-16 items-center"
         style={{
           backgroundImage: `url(${stackedOnly ? MrsRastaImage : MrRastaImage})`,
           backgroundPosition: 'center',
@@ -138,7 +138,7 @@ const Farms: React.FC = () => {
           </div>
           <div className="card items-center text-center w-full mt-16">
             <div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 space-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
                 <Route exact path={`${path}`}>
                   {stackedOnly ? farmsList(stackedOnlyFarms, false) : farmsList(activeFarms, false)}
                 </Route>
